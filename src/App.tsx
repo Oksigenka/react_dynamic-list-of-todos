@@ -17,9 +17,8 @@ export const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [filtered, setFiltered] = useState<Todo[]>([]);
   const [search, setSearch] = useState('');
-  const [currentFilter, setCurrentFilter] = useState<
-  'all' | 'active' | 'completed'
-  >('all');
+  // eslint-disable-next-line prettier/prettier
+  const [currentFilter, setCurrentFilter] = useState<'all' | 'active' | 'completed'>('all');
 
   useEffect(() => {
     getTodos()
@@ -41,7 +40,7 @@ export const App: React.FC = () => {
 
     if (search.trim()) {
       result = result.filter(todo =>
-        todo.title.toLowerCase().includes(search.toLowerCase())
+        todo.title.toLowerCase().includes(search.toLowerCase()),
       );
     }
 
@@ -71,15 +70,7 @@ export const App: React.FC = () => {
             </div>
 
             <div className="block">
-              {loading && <Loader />}
-              {/* <TodoList
-                todos={filtered}
-                loading={loading}
-                onSelect={todo => {
-                  setSelectedTodo(todo);
-                  setIsModalOpen(true);
-                }}
-              /> */}
+              {loading && filtered.length === 0 && <Loader />}
               <TodoList
                 todos={filtered}
                 loading={loading}

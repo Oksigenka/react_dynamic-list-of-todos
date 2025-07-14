@@ -3,11 +3,13 @@ import { useState } from 'react';
 type Props = {
   onFilterChange: (filter: 'all' | 'active' | 'completed') => void;
   onSearchChange: (query: string) => void;
+  currentFilter: 'all' | 'active' | 'completed';
 };
 
 export const TodoFilter: React.FC<Props> = ({
   onFilterChange,
   onSearchChange,
+  currentFilter,
 }) => {
   const [searchValue, setSearchValue] = useState('');
 
@@ -33,7 +35,11 @@ export const TodoFilter: React.FC<Props> = ({
     <form className="field has-addons">
       <p className="control">
         <span className="select">
-          <select data-cy="statusSelect" onChange={handleChange}>
+          <select
+            data-cy="statusSelect"
+            onChange={handleChange}
+            value={currentFilter}
+          >
             <option value="all">All</option>
             <option value="active">Active</option>
             <option value="completed">Completed</option>
